@@ -8,8 +8,6 @@ from observer.dir_monitor import CreateObserverDir
 from observer.dir_monitor import *
 
 
-
-# For now will only show the name of the file that was chosen
 folder_path_column = [
     [
         sg.Text("Monitor Folder"),
@@ -22,7 +20,7 @@ folder_path_column = [
 ]
 
 
-# First the window layout in 2 columns
+
 log_list_column = [
     
 
@@ -32,7 +30,7 @@ log_list_column = [
 ]
 
 
-# ----- Full layout -----
+
 layout = [
     [
         sg.Column(folder_path_column),
@@ -46,22 +44,17 @@ def observer(_path):
     t.run()
 
 def _event_(event, values):
-    # Folder name was filled in, make a list of files in the folder
     if event.startswith('-FOLDER-'):
         folder = values["-FOLDER-"]
         try:
             threading.Thread(target=observer, args=(folder,), daemon=True).start()
-            # Get list of files in folder
+
         except Exception as e:
             print(e)
 
-        #window["-FOLDER-"].update(fnames)
-        #window["-TOUT-"].update(fnames)
-    elif event == "-FILE LIST-":  # A file was chosen from the listbox
+    elif event == "-FILE LIST-":  
         try:
             filename = values["-FILE LIST-"]
-            #print(filename)
-            #window["-TOUT-"].update(filename)
 
         except:
             pass
@@ -71,7 +64,6 @@ def _event_(event, values):
 def run():
     window = sg.Window("Image Viewer", layout)
 
-    # Run the Event Loop
     while True:
         event, values = window.read()
         if event == "Exit" or event == sg.WIN_CLOSED:
