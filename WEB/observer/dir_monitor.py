@@ -16,7 +16,7 @@ class CreateObserverDir(Target):
         try:
             with open(log_path, 'a', -1, 'utf-8') as f:
                 fp = re.search(r"src_path='(.*)'",str(event))
-                f.write('CREATE '+fp.group(1)+'\n')
+                f.write('NEW '+fp.group(1)+'\n')
 
         except Exception as e:
             print(e)
