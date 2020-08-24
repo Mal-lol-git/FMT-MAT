@@ -1,0 +1,24 @@
+DELETE C:\\Users\\mjhnytgrf\\Desktop\\test\\312.txt
+CREATE C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\2.txt
+NEW C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\2 (2).txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\2 (2).txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\2.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\22.txt
+NEW C:\\Users\\mjhnytgrf\\Desktop\\test\\새 폴더
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\새 폴더' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\321
+DELETE C:\\Users\\mjhnytgrf\\Desktop\\test\\321
+DELETE C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt
+DELETE C:\\Users\\mjhnytgrf\\Desktop\\test\\22.txt
+NEW C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt
+DELETE C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt
+NEW C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\새 텍스트 문서.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\3213.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\3213.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\2.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\2.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\23.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\23.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\2.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\2.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\321.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\32131.txt
+MOVED C:\\Users\\mjhnytgrf\\Desktop\\test\\32131.txt' -> C:\\Users\\mjhnytgrf\\Desktop\\test\\1.txt
