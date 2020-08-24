@@ -1,0 +1,5 @@
+WEB/observer/__pycache__/*
+WEB/log.txt
+.env
+.pyc
+
