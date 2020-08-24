@@ -49,6 +49,10 @@ class CreateObserverDir(Target):
             #print('MOVED ' + sp.group(1) + ' -> ' + dp.group(1))
             q.put('MOVED ' + sp.group(1) + ' -> ' + dp.group(1))
         except Exception as e:
-            print(e)            
+            print(e) 
+
+    def filter(self):
+        pass
+
             
 

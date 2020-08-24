@@ -83,7 +83,7 @@ class CLineEditWindow(QMainWindow):
 		self.status()
 		worker = asd[0]
 		worker2 = asd[1]
-
+		q.put('stop')
 		#worker.stop = True
 		del asd[:]
 		#worker.daemon = False
@@ -92,12 +92,14 @@ class CLineEditWindow(QMainWindow):
 		print('worker daemon : '+ str(worker.daemon))
 		print('worker2 : '+ str(worker2.is_alive()))
 		print('worker daemon2 : '+ str(worker2.daemon))
+		worker.join()
+		worker2.join()
 
 	def print(self):
 		while(True):
 		    a = q.get()
 		    self.textedit.addItem(a)
-		    if not t.status():
+		    if a == 'stop':
 		    	break
 
 	def status(self):

@@ -3,7 +3,9 @@
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+import queue
 
+q = queue.Queue()
 
 class Target(FileSystemEventHandler):
     def __init__(self, watchDir):
@@ -19,6 +21,7 @@ class Target(FileSystemEventHandler):
             while True:
                 time.sleep(1)
                 if not self.status():
+                    q.put(self.status())
                     break
 
         except KeyboardInterrupt:
