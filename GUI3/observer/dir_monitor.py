@@ -19,7 +19,7 @@ class CreateObserverDir(Target):
         try:
             fp = re.search(r"src_path='(.*)'",str(event))
             #print('CREATE '+fp.group(1))
-            q.put('CREATE '+fp.group(1))
+            q.put('New '+fp.group(1))
         except Exception as e:
             print(e)
 
@@ -28,7 +28,7 @@ class CreateObserverDir(Target):
         try:
             fp = re.search(r"src_path='(.*)'",str(event))
             #print('DELETE '+fp.group(1))
-            q.put('DELETE '+fp.group(1))
+            q.put('Deleted '+fp.group(1))
         except Exception as e:
             print(e)
 
@@ -37,7 +37,7 @@ class CreateObserverDir(Target):
         try:
             fp = re.search(r"src_path='(.*)'",str(event))
             #print('MODIFIED '+fp.group(1))
-            q.put('MODIFIED '+fp.group(1))
+            q.put('Modified '+fp.group(1))
         except Exception as e:
             print(e)
 
@@ -47,7 +47,7 @@ class CreateObserverDir(Target):
             sp = re.search(r"src_path='(.*),",str(event))
             dp = re.search(r".*.dest_path='(.*)'",str(event))
             #print('MOVED ' + sp.group(1) + ' -> ' + dp.group(1))
-            q.put('MOVED ' + sp.group(1) + ' -> ' + dp.group(1))
+            q.put('Moved ' + sp.group(1) + ' -> ' + dp.group(1))
         except Exception as e:
             print(e) 
 

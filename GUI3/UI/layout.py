@@ -1,6 +1,8 @@
-import sys
+import sys, os
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5 import uic
 
 import threading
 import time
@@ -11,6 +13,10 @@ from observer.dir_monitor import *
 
 asd = []
 path = r'C:\\'
+col = ''
+
+item = ''
+item2 = ''
 
 t = CreateObserverDir(path)
 class CLineEditWindow(QMainWindow):
@@ -21,11 +27,16 @@ class CLineEditWindow(QMainWindow):
 	
 
 	def UI(self):
-		self.setWindowTitle("a")
+		#self.setWindowFlags(Qt.FramelessWindowHint) 
+		#self.setWindowFlags(Qt.X11BypassWindowManagerHint)
+
+		self.setWindowTitle("File Monitoring Tool")
 		self.setGeometry(100,100,500,500)
+		self.setWindowIcon(QIcon('D:\\pool\\FMT-MAT\\GUI3\\UI\\test.ico'))	# 아이콘
+		#self.setStyleSheet('border: 1px solid black; background-color: #E1BEE7')	# 색상 
 
 
-		textLabel = QLabel("상태 : ", self)
+		textLabel = QLabel("Status : ", self)
 		textLabel.move(20,55)
 		textLabel.resize(150,20)
 
@@ -33,12 +44,12 @@ class CLineEditWindow(QMainWindow):
 		self.label.move(55,55)
 		self.label.resize(150,20)
 
-		btnStart = QPushButton("시작", self)
+		btnStart = QPushButton("Start", self)
 		btnStart.move(20,20)
 		btnStart.resize(50,30)
 		btnStart.clicked.connect(self.btnStart_clicked)
 
-		btnStop = QPushButton("정지", self)
+		btnStop = QPushButton("Stop", self)
 		btnStop.move(80,20)
 		btnStop.resize(50,30)
 		btnStop.clicked.connect(self.btnStop_clicked)
@@ -46,8 +57,24 @@ class CLineEditWindow(QMainWindow):
 		self.textedit = QListWidget(self)
 		self.textedit.move(20,80)
 		self.textedit.resize(450,400)
+		self.textedit.setFont(QFont("나눔고딕", 8, QFont.Bold))
+		#self.textedit.move(20,80)
+		#self.textedit.resize(90,400)
+		self.textedit.setStyleSheet("background: white")
+
+		#self.textedit.moveCursor(QTextCursor.End)
+
+
+		#self.setCentralWidget(scroll)
+
+		#self.textedit2 = QListWidget(self)
+		#self.textedit2.move(90,80)
+		#self.textedit2.resize(390,400)
+		#self.textedit2.setStyleSheet("border: 0.1px solid black;")
 
 		
+
+
 
 
 	def btnStart_clicked(self):
@@ -80,7 +107,7 @@ class CLineEditWindow(QMainWindow):
 	def btnStop_clicked(self):
 		t.stop()
 		q.put('3')
-		time.sleep(0.7)
+		time.sleep(0.5)
 		self.status()
 		worker = asd[0]
 		worker2 = asd[1]
@@ -96,17 +123,45 @@ class CLineEditWindow(QMainWindow):
 		print('worker daemon2 : '+ str(worker2.daemon))
 
 		worker.join()
-		time.sleep(1)
+		time.sleep(0.3)
 		worker2.join()
 
 	def print(self):
 		while(True):                   
-		    a = q.get()
-		    self.textedit.addItem(a)
-		    print('2')
-		    if a == '3':
-		    	break		
-                
+			a = q.get()
+
+			c = a.split(' ')[0]
+			b = re.search(' (.*)',a)
+			self.col(c, a)
+			#self.textedit.addItem(item)
+			#self.textedit.setStyleSheet("Color : black")
+
+			#if b != None:
+		   	#	self.textedit.addItem(b.group(1))
+
+			if a == '3':
+		   		break	
+
+	def col(self, c, b):
+		item = QListWidgetItem(c)
+		item2 = QListWidgetItem(b)
+
+		if c == 'New':
+			item2.setForeground(QColor('#60C13C'))
+		if c == 'Modified':
+			item2.setForeground(QColor('#30BBF6'))
+		if c == 'Deleted':
+			item2.setForeground(QColor('#FE9A2E'))
+		if c == 'Moved':
+			item2.setForeground(QColor('#C385E5'))
+		item2.setSelected(True)
+		self.textedit.addItem(item2)
+		print(self.textedit.row(item2))
+		q = self.textedit.item(self.textedit.row(item2))
+		self.textedit.scrollToItem(q, QAbstractItemView.PositionAtTop)
+		#self.textedit.scrollToItem(item2, QAbstractItemView.PositionAtBottom)
+		
+
 
 	def status(self):
 		if not t.status():
