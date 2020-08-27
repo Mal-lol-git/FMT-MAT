@@ -156,9 +156,9 @@ class CLineEditWindow(QMainWindow):
 			item2.setForeground(QColor('#C385E5'))
 		item2.setSelected(True)
 		self.textedit.addItem(item2)
-		print(self.textedit.row(item2))
-		q = self.textedit.item(self.textedit.row(item2))
-		self.textedit.scrollToItem(q, QAbstractItemView.PositionAtTop)
+		#print(self.textedit.row(item2))
+		#q = self.textedit.item(self.textedit.row(item2))
+		#self.textedit.scrollToItem(q, QAbstractItemView.PositionAtTop)
 		#self.textedit.scrollToItem(item2, QAbstractItemView.PositionAtBottom)
 		
 
