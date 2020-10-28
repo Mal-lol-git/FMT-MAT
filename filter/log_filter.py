@@ -1,8 +1,6 @@
 from settings import *
 
 
-#USERNAME='mjhnytgrf'    #Username ..settings
-
 #regex path filter
 regex = [
 'C:\\Users\\'+USERNAME+'\\ntuser.dat.LOG1',
@@ -18,6 +16,5 @@ regex = [
 'C:\\Users\\'+USERNAME+'\\AppData\\Local\\Temp\\vmware-*',
 'C:\\Windows\\Prefetch\\*.pf',
 'C:\\Windows\\System32\\LogFiles\\*',
-'C:\\Users\\'+USERNAME+'\\AppData\\Local\\HAURI',
 'C:\\Users\\'+USERNAME+'\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Cookies-*'
 ]
