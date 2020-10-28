@@ -1,5 +1,7 @@
-WEB/observer/__pycache__/*
-WEB/log.txt
+__pycache__/*
+filter/__pycache__/*
+observer/__pycache__/*
+UI/__pycache__/*
 .env
 .pyc
 
