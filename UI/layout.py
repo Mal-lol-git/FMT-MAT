@@ -9,7 +9,6 @@ from PyQt5.QtGui import *
 from PyQt5 import uic
 
 from concurrent.futures import ThreadPoolExecutor
-
 from observer.dir_monitor import CreateObserverDir
 from observer.dir_monitor import *
 
@@ -68,7 +67,6 @@ class CLineEditWindow(QWidget):
 		self.textedit2.setMaximumHeight(20)
 		self.textedit2.setFont(QFont("나눔고딕", 8, QFont.Bold))
 		
-
 		layout = QGridLayout()
 
 		layout.setSpacing(5)
@@ -84,7 +82,6 @@ class CLineEditWindow(QWidget):
 		
 		self.setLayout(layout)
 		
-
 		self.textedit.setContextMenuPolicy(Qt.ActionsContextMenu)
 
 		clear_action = QAction('Clear_all_log',self)
@@ -93,7 +90,6 @@ class CLineEditWindow(QWidget):
 
 		self.textedit.setVerticalScrollMode(QAbstractItemView.ScrollPerItem)
 
-
 	def btnOpendir_clicked(self):
 		directory = str(QFileDialog.getExistingDirectory())
 		if bool(directory) and '실행 중' != self.label.text():
@@ -101,7 +97,6 @@ class CLineEditWindow(QWidget):
 			self.textedit2.addItem('{}'.format(directory))
 			self.monitor = CreateObserverDir(directory)
 		
-
 	def btnStart_clicked(self):
 		if '중지' == self.label.text() or (''== self.label.text() and self.textedit2.item(0) is not None):
 			worker = threading.Thread(target=self.monitor.run, name='logger', daemon=True)
@@ -114,10 +109,8 @@ class CLineEditWindow(QWidget):
 
 			time.sleep(0.5)
 			self.status()
-
 		else:
 			pass
-
 
 	def btnStop_clicked(self):
 		if '실행 중' == self.label.text(): 
@@ -136,7 +129,6 @@ class CLineEditWindow(QWidget):
 		else:
 			pass
 
-
 	def print(self):
 		while(True):                   
 			event_data = q.get()
@@ -147,7 +139,6 @@ class CLineEditWindow(QWidget):
 			#b = re.search(' (.*)',event_data)
 			self.col(event, event_data)
 			time.sleep(0.05)
-
 
 	def col(self, event, event_data):
 		#item = QListWidgetItem(event)
@@ -164,13 +155,11 @@ class CLineEditWindow(QWidget):
 		
 		self.textedit.addItem(data_item)
 
-
 	def status(self):
 		if not self.monitor.status():
 			self.label.setText("중지")
 		if self.monitor.status():	
 			self.label.setText("실행 중")
-
 
 if __name__ == "__main__":
 
