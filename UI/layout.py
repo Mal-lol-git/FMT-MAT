@@ -90,6 +90,19 @@ class CLineEditWindow(QWidget):
 
 		self.textedit.setVerticalScrollMode(QAbstractItemView.ScrollPerItem)
 
+		self.textedit.itemDoubleClicked.connect(self.showItem)
+
+	def showItem(self, item):
+		#print(self.textedit.currentItem().text())
+		result = re.search('^(New|Deleted|Modified|Moved) (.*)',self.textedit.currentItem().text())
+		click_path = result.group(2)
+
+		if not os.path.isdir(click_path):
+			click_path = os.path.dirname(click_path)
+
+		if os.path.isdir(click_path):
+			os.startfile(click_path)
+
 	def btnOpendir_clicked(self):
 		directory = str(QFileDialog.getExistingDirectory())
 		if bool(directory) and '실행 중' != self.label.text():

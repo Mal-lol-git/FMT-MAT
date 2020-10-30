@@ -61,7 +61,8 @@ class CreateObserverDir(Target):
             modified_sp_log = str(Path(sp.group(1)))                                                    # use Path method
             modified_dp_log = str(Path(dp.group(1)))                                                    # use Path method
             if self.filter(modified_sp_log, regex) and self.filter(modified_dp_log, regex):             # apply regex filter list <- log_filter.py 
-                q.put('Moved ' + modified_sp_log + ' -> ' + modified_dp_log)                            # send moved(sp,dp)_log to Queue
+                q.put('Moved ' + modified_dp_log)                            # send moved(sp,dp)_log to Queue
+                #q.put('Moved ' + modified_sp_log + ' -> ' + modified_dp_log)                            # send moved(sp,dp)_log to Queue
         except Exception as e:
             print(e) 
 
