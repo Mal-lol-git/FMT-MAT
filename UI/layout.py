@@ -1,6 +1,7 @@
 import sys 
 import os
 import time
+import shutil
 import threading
 
 from PyQt5.QtWidgets import *
@@ -35,6 +36,11 @@ class CLineEditWindow(QWidget):
 		textLabel = QLabel("Status : ")
 		textLabel.setMaximumWidth(150)
 		textLabel.setMaximumHeight(20)
+
+		self.checkbox = QCheckBox("CreateFile Backup")
+		#self.checkbox.setMaximumWidth(20)
+		#self.checkbox.setMaximumHeight(30)
+		self.checkbox.stateChanged.connect(self.filebackup)
 
 		textLabel2 = QLabel("Path : ")
 		textLabel2.setMaximumWidth(50)
@@ -72,6 +78,7 @@ class CLineEditWindow(QWidget):
 		layout.setSpacing(5)
 				
 		layout.addWidget(textLabel, 1, 0)
+		layout.addWidget(self.checkbox, 0, 4, 1, 2)
 		layout.addWidget(textLabel2, 1, 3)
 		layout.addWidget(self.label, 1, 1, 1, 2)
 		layout.addWidget(btnStart, 0, 0)
@@ -91,6 +98,18 @@ class CLineEditWindow(QWidget):
 		self.textedit.setVerticalScrollMode(QAbstractItemView.ScrollPerItem)
 
 		self.textedit.itemDoubleClicked.connect(self.showItem)
+
+
+	def filebackup(self, data):		
+		if self.checkbox.isChecked():
+			if not os.path.exists(BACKUP_PATH):
+				os.makedirs(BACKUP_PATH)
+			if str == type(data): 
+				result = re.search('^(New|Deleted|Modified|Moved) (.*)',data)
+				orgin_path = result.group(2)
+				if os.path.isfile(orgin_path):
+					shutil.copy2(orgin_path, BACKUP_PATH)
+
 
 	def showItem(self, item):
 		#print(self.textedit.currentItem().text())
@@ -161,6 +180,7 @@ class CLineEditWindow(QWidget):
 			data_item.setForeground(QColor('#60C13C'))
 		if event == 'Modified':
 			data_item.setForeground(QColor('#30BBF6'))
+			self.filebackup(event_data)
 		if event == 'Deleted':
 			data_item.setForeground(QColor('#FE9A2E'))
 		if event == 'Moved':

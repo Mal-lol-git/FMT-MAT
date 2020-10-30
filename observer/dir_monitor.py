@@ -10,7 +10,7 @@ from settings import *
 
 #========================================================================================
 
-q = queue.Queue(2)                                                   #Tread control
+q = queue.Queue()                                                   #Tread control
 
 
 class CreateObserverDir(Target):

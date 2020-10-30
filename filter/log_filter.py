@@ -3,6 +3,7 @@ from settings import *
 
 #regex path filter
 regex = [
+BACKUP_PATH,
 'C:\\Users\\'+USERNAME+'\\ntuser.dat.LOG1',
 'C:\\Users\\'+USERNAME+'\\NTUSER.DAT',
 'C:\\Users\\'+USERNAME+'\\AppData\\Local\\Temp\\wireshark_*.pcapng',
