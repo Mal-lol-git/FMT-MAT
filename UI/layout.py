@@ -100,15 +100,18 @@ class CLineEditWindow(QWidget):
 		self.textedit.itemDoubleClicked.connect(self.showItem)
 
 
-	def filebackup(self, data):		
-		if self.checkbox.isChecked():
-			if not os.path.exists(BACKUP_PATH):
-				os.makedirs(BACKUP_PATH)
-			if str == type(data): 
-				result = re.search('^(New|Deleted|Modified|Moved) (.*)',data)
-				orgin_path = result.group(2)
-				if os.path.isfile(orgin_path):
-					shutil.copy2(orgin_path, BACKUP_PATH)
+	def filebackup(self, data):	
+		try:	
+			if self.checkbox.isChecked():
+				if not os.path.exists(BACKUP_PATH):
+					os.makedirs(BACKUP_PATH)
+				if str == type(data): 
+					result = re.search('^(New|Deleted|Modified|Moved) (.*)',data)
+					orgin_path = result.group(2)
+					if os.path.isfile(orgin_path):
+						shutil.copy2(orgin_path, BACKUP_PATH)
+		except Exception as e:
+			print(e)
 
 
 	def showItem(self, item):

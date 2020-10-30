@@ -1,15 +1,18 @@
 # -*- coding:utf-8 -*-
 
-import os 
+import os, sys
 import getpass
 import re
+import tempfile 
 
 #===========================USER NAME===========================
 
 USERNAME = getpass.getuser()
 
-#===========================USER NAME===========================
+#===========================BAKUP_PATH===========================
 
-NOW_PATH = os.path.dirname(os.path.abspath(__file__))
-BACKUP_PATH = os.path.join(NOW_PATH, 'backup')
+EXE_PATH  = os.path.dirname(sys.executable)
+BACKUP_PATH = os.path.join(EXE_PATH, 'backup')
+
+
 
