@@ -1,5 +1,5 @@
 # FMT-MAT
-File Monitoring Tool (ing...)
+File Monitoring Tool
 
 ## Requirements
 Windows
@@ -7,7 +7,8 @@ Python 3 ver
 
 ## Install
 ```bash
-python -m pip install requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ## Usage
